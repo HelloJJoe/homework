@@ -10,16 +10,19 @@ input: ,hello
 output: ,hello
 */
 
-import {capitalize} from './hw1-2'
+import {Capitalize} from './hw1-2'
 
 describe('測試', () => {
     it('it should be "Happy"', () => {
-        expect(capitalize('happy')).toBe('Happy')
+        expect(Capitalize('happy')).toBe('Happy')
     })
-    it('it should be "Nick"', () => {
-        expect(capitalize('nick')).toBe('Nick')
+    it('it should be "Nic"', () => {
+        expect(Capitalize('nic')).toBe('Nic')
     })
     it('it should be ",ello"', () => {
-        expect(capitalize(',ello')).toBe(',ello')
+        expect(Capitalize(',ello')).toBe(',ello')
     })
-})
+    it('it should be "YA"', () => {
+        expect(Capitalize('YA')).toBe('YA')
+    })
+}) 
