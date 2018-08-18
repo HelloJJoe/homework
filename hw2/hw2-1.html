@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>title</title>
+        <style>
+            html, body {
+                margin: 0px;
+            }
+            .Navbar {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                padding: 0px 10px;
+                position: fixed;
+                background: #343a40;
+                color: white;
+            }
+            .Navbar .icon {
+                font-size: 20px;
+                display: inline-block;
+                line-height: 50px;
+            }
+            .Navbar ul {
+                margin: 0px 0px 0px 5px;
+                padding: 0;
+                list-style: none;
+                display: inline-block;
+            }
+            .Navbar ul li {
+                display: inline-block;
+                margin-left: 15px;
+                color: grey;
+            }
+            .Navbar ul li:hover {
+                cursor: pointer;
+                color: white;
+            }
+            .middle {
+                margin-top: 50px;
+                padding: 40px 0px; 
+                background:grey; 
+            }
+            .container {
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0 20px;
+             
+            }
+            .headline {
+                font-size: 80px;
+            }
+            .content {
+                padding:10px 0;
+            }
+            .middle .btn {
+                background: lightseagreen;
+                color : white;
+                font-size: 30px;
+                width: 220px;
+                padding: 10px 15px;
+                border-radius: 4px;
+                display: inline-block;
+                transition: background 0.2s ease-in;
+            }
+            .middle .btn:hover{
+                cursor: pointer;
+                background: #5b9eec;
+            }
+            .bottom {
+                margin:50px 0px;
+            }
+            .box {
+                display:inline-block;
+                width: calc((100% - 40px ) / 3 );
+            }
+            .head {
+                font-size: 30px;
+            }
+            .word {
+                padding:10px 0;
+            }
+            .bottom .btn {
+                color: white;
+                background: gray;
+                padding: 10px 15px;
+                border-radius: 4px;
+                display: inline-block;
+                transition: background 0.2s ease-in;
+            }
+            .bottom .btn:hover {
+                cursor: pointer;
+                background: #4c4949;
+            }
+            .foot {
+                border-top: 1px solid lightgrey;
+                padding-top: 10px;
+            }
+
+            @media (max-width: 760px) { 
+                .box {
+                    width: 100%;
+                }
+                .box ~ .box {
+                    margin-top: 20px;
+                }
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        <div class='Navbar'>
+            <div class='icon'>Navbar</div>
+            <ul>
+                <li>Home</li>
+                <li>List</li>
+            </ul>
+            
+        </div>
+        <div class='middle'>
+            <div class='container'>
+                <div class='headline'>Hello, World!</div>
+                <div class='content'>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content.
+                 Use it as a starting point to create something more unique.</div>
+                <div class='btn'>Learn more >></div>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='bottom'>
+                <div class='box'>
+                    <div class='head'>Heading</div>
+                    <div class='word'>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</div>
+                    <div class='btn'>View details >></div>
+                </div>
+                <div class='box'>
+                        <div class='head'>Heading</div>
+                        <div class='word'>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</div>
+                        <div class='btn'>View details >></div>
+                </div>
+                <div class='box'>
+                        <div class='head'>Heading</div>
+                        <div class='word'>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</div>
+                        <div class='btn'>View details >></div>
+                </div>
+            </div>
+            <div class='foot'>© Company 2017-2018</div>
+        </div>
+
+
+
+    </body>
+</html>
