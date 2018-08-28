@@ -1,0 +1,141 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>hw4-3仿 Twitch頻道頁面</title>
+        <style > 
+            body {
+                margin: 0;
+                background: url("http://cdn.leagueoflegends.com/lolkit/1.1.6/resources/images/bg-default.jpg") fixed;
+            }
+            .container {
+                max-width: 1000px;
+                margin: 30px auto;
+                
+            }
+            .block {
+                display: inline-block;
+                margin: 5px;
+                transition: all 2s ease;
+            }
+            .block:hover {
+                box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.5);
+                filter: brightness(200%)
+            }
+            .top {
+                height: 180px
+
+            }
+            .bottom {
+                height: 60px;
+                background-color: rgba(22, 21, 21, 0.7);
+            }
+            .logo {
+                display: inline-block;
+                height: 100%;
+                margin: 0 10px;
+            }
+            .logo img {
+                max-width: 50px;
+                border-radius: 100%;
+                display: block;
+                margin: auto ;
+            }
+            .word {
+                display: inline-block;
+                margin: 10px 5px;
+                overflow: hidden;
+            }
+           
+            .status{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 200px
+
+            }
+            
+
+        </style>
+        <script type='text/javascript'>
+            
+            document.addEventListener('DOMContentLoaded', function(){
+                
+                getStreamsFromApI(function(){
+                    for (var i = 0; i<=19 ; i++){
+                        addStream(i)
+                    }
+                }) 
+                getStreamsFromApI( () => console.log(response.streams[0]))
+               
+            });
+
+            function getStreamsFromApI (callback) {
+                var request = new XMLHttpRequest();
+
+                request.open('GET','https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends', true);
+
+                request.setRequestHeader('Client-ID', 'w2kew9u3juaaa56uz7ccnjjt8jtbun');
+                request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+
+                request.onload = function() {
+                    response = JSON.parse(request.responseText)
+                    callback(response)
+                
+                }
+                request.send();     
+            } 
+
+            function addStream (i){
+                //top > preview
+                var block = document.querySelectorAll('.block')
+                var blocktobeclone = document.querySelectorAll('.block')[i]
+                var top = document.querySelectorAll('.top')
+                var preview = document.createElement('img')
+                var container = document.querySelector('.container')
+
+                if ( i < 19 ){
+                    var EmptyBlock = blocktobeclone.cloneNode( true )
+                    container.appendChild(EmptyBlock)
+                }
+                
+
+                //top > preview
+                preview.src = response.streams[i].preview.medium
+                top[i].appendChild(preview)
+
+                //bottom > logo > 
+                var logo = document.createElement('img')
+                logo.src = response.streams[i].channel.logo
+                document.querySelectorAll('.logo')[i].appendChild(logo)
+
+                //bottom > word > status
+                document.querySelectorAll('.status')[i].innerText = response.streams[i].channel.status
+
+                //bottom > word > name
+                document.querySelectorAll('.name')[i].innerText = response.streams[i].channel.name
+            }
+        
+     
+        </script>
+    </head> 
+    <body>
+        <div class='container'>
+            <div class='block'>
+                <div class='top'></div>
+                <div class='bottom'>
+                    <div class='logo'></div>
+                    <div class='word'>
+                       <div class='status'></div>
+                       <div class='name'></div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </body>
+
+</html>
+ 
+<!--'Client-ID: w2kew9u3juaaa56uz7ccnjjt8jtbun' \
+-->

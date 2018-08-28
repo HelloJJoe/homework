@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>超簡易to-do-list＋刪除功能</title>
+        <style >
+            h1 {
+                margin: 30px;
+            }
+            .close {
+                color :red;
+            }
+            .close:hover {
+                cursor: pointer;
+            }
+            
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelector('#btn').addEventListener('click', () => {
+                    var text = document.querySelector('.text')
+                    //方法一
+                    //document.querySelector('.todo').innerHTML += '<li>' + text.value + '</li>'
+                    //優化（click完框框內的文字消失）text.value = '' 
+                    //方法二
+                    //var item = document.createElement('li')
+                    //item.innerText = text.value
+                    //document.querySelector('.todo').appendChild(item)
+                    //方法三
+                    var item = document.createElement ('li')
+                    item.innerHTML = `
+                        <div>
+                            ${text.value}
+                            <span class='close' data-text='${text.value}'>x</span>
+                        </div>
+                    `
+                    document.querySelector('.todo').appendChild(item)
+
+                })
+                //刪除功能
+                document.querySelector('.todo').addEventListener('click', e => {
+                    for ( var i = 0; i<=e.target.classList.length ; i++) {
+                          if (e.target.classList[i] === 'close') {
+                              //方法一
+                              //e.target.parentNode.parentNode.outerHTML = '' 
+                              //方法二
+                              //document.querySelector('.todo').removeChild(e.target.parentNode.parentNode)
+                              //方法三
+                              e.target.parentNode.parentNode.parentNode.removeChild (e.target.parentNode.parentNode)
+                          }
+
+                    }
+
+                })
+            })
+                
+             
+        </script>
+    </head>
+    <body>
+        <ul class='todo'>
+            <li>吃飯</li>
+            <li>看影片</li>
+        </ul>
+        <input type="text"  class='text' placeholder="請輸入to-do"  />
+        <input type='button' id='btn' value='add' />
+    </body>
+
+</html>

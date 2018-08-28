@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>4-1影片內toggle用法</title>
+        <style >
+            .yellow {
+                background: yellow;   
+            }
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', function(){
+                var test = document.querySelector('.hello > p' )
+                var span = document.createElement('span')
+                span.innerText = 'HiJoe'
+                span.classList.add('yellow')
+                test.appendChild(span)
+
+                document.querySelector('#btn').addEventListener('click', () => {
+                    //錯1：沒有選到sapn : document.querySelector('.test span').classList.toggle('yellow')
+                    //錯2：這樣的話，click完這行就沒用了，因為他就不是class yellow：document.querySelector('.yellow).classList.toggle('yellow')
+                    //正確版複雜版：document.querySelector('.hello > p > span').classList.toggle('yellow')
+                    document.querySelector('.hello span').classList.toggle('yellow')
+                })
+
+              
+            })
+  
+        </script>
+    </head>
+    <body>
+        <div class='hello'>
+            <p>1234</p>
+         </div>
+        <input type='button' id='btn' value='click me' />
+    </body>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>hw4-2仿 Google 表單</title>
+        <style>
+            body {
+                margin: 0px 0px;
+            }
+            .container {
+                max-width: 600px;
+                margin: 100px auto;
+                border: 1px solid rgb(247, 224, 224);
+                padding: 30px 10px;
+            }
+            .top {
+                padding: 0px 20px;
+            }
+            .head {
+                font-size: 37px;
+                margin-bottom: 10px;
+            }
+            .middle {
+                font-size: 5px;
+            }
+         
+            .tag {
+                color: red;
+                display: inline-block;
+                padding: 5px 5px;
+            }
+         
+            
+            .block {
+                padding: 10px 20px;
+                margin: 5px 0;
+                font-size: 5px;
+                
+            }
+            h2 {
+                font-size: 20px;
+                margin-bottom: 0px;
+                display: inline-block;
+                margin-top: 10px;
+            }
+            .question {
+                background: none;
+                border-style: none;
+                border-bottom-style: solid;
+                border-color: rgb(212, 209, 209);
+                width: 200px;
+                font-size: 15px;
+                color: rgb(201, 196, 196);
+                display: block;
+                margin-top: 25px;
+
+            }
+            .subtitle {
+                margin-top: 0;
+                font-size: 10px;
+            }
+            #button {
+                background: rgb(0, 132, 255);
+                box-sizing: unset;
+                width: 70px;
+                height: 30px;
+                border-radius: 4px;
+                font-size: 15px;
+                color: white;
+                margin: 10px 20px;
+            }
+            .rq {
+                font-size: 18px;
+                display: inline-block;
+            }
+            .name {
+                display: inline-block;
+            }
+            .radio_question {
+                font-size: 18px
+            }
+            .warning {
+                color: red;
+                margin: 15px 0px;
+                font-size: 15px;
+            }
+
+            
+          
+        
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelector('form').addEventListener('submit', e => {
+                        var q = document.querySelectorAll('.question')
+                        var d = document.querySelectorAll('.block')
+                        
+                        //檢查必答題是否回答
+                        if ( q[0].value === '' || q[1].value === ''|| q[2].value === ''){
+                            alert("You haven't don yet!")
+                            e.preventDefault()
+
+                            //檢查Q1是否回答
+                            if (q[0].value === '') {
+                                //警告完後看有沒有回答
+                                if ( d[0].style.background === 'rgb(247, 224, 224)') {
+                                }
+                                else{
+                                //背景變紅
+                                    d[0].style.background = 'rgb(247, 224, 224)'
+                                //提醒文字
+                                    var notice = document.createElement('div')
+                                    notice.innerHTML = '<div>' + '這是必填問題' + '</div>'
+                                    notice.classList.add('warning')
+                                    d[0].appendChild(notice)
+                                }
+                            //Q1問題已填，消除提醒文字，背景變回來
+                            }else{
+                                d[0].style.background = 'none'
+                                let test = document.querySelector('.block:nth-child(1) > .warning')
+                                d[0].removeChild(test)
+                            }
+
+                            //檢查Q2是否回答
+                            if (q[1].value === '') {
+                                //警告完後看有沒有回答
+                                if ( d[1].style.background === 'rgb(247, 224, 224)') {
+                                }
+                                else{
+                                //背景變紅
+                                    d[1].style.background = 'rgb(247, 224, 224)'
+                                //提醒文字
+                                    var notice = document.createElement('div')
+                                    notice.innerHTML = '<div>' + '這是必填問題' + '</div>'
+                                    notice.classList.add('warning')
+                                    d[1].appendChild(notice)
+                                }
+                            //Q1問題已填，消除提醒文字，背景變回來
+                            }else{
+                                d[1].style.background = 'none'
+                                let test = document.querySelector('.block:nth-child(2) > .warning')
+                                d[1].removeChild(test)
+                            }
+                
+                          
+                        }
+                    })
+            })
+
+
+        </script>
+    </head>
+    <body>
+        <div class='container'>
+
+                <div class='top'>
+                    <div class='head'>從零到一：程式導師實驗計畫報名表單</div>
+                    <div class='middle'>
+                        詳情請參考：<a href='https://google.com'>https://medium.com/@hulitw/mentor-program-b5f96ae1eed1</a>
+                        <br>記得填完表單之後還要寫信報名才算成功，兩者缺一不可！
+                    </div>
+                    <div class='bottom'>
+                        <div class='tag'>*</div>必填
+                    </div>
+                </div>
+
+                <form>
+                    <!--Ｑ1 -->
+                    <div class='block'>
+                        <h2>電子郵件地址</h2>
+                        <div class='tag'>*</div>
+                        <input type='text' class='question' placeholder='您的電子郵件'/>
+                    </div>
+
+                     <!--Ｑ2 -->
+                    <div class='block'>
+                        <h2>暱稱</h2>
+                        <div class='tag'>*</div>
+                        <br>該怎麼稱呼你
+                        <input type='text' class='question' placeholder='您的回答' />
+                    </div>
+
+                     <!--Ｑ3 -->
+                    <div class='block'>
+                        <h2>報名類型</h2>
+                        <div class='tag'>*</div>
+                        <div class='radio_question'>
+                            <input type="radio" name='kind' />程師培養班（每週付出四十小時，從零培養到工程師，學費是一個月薪水<br>
+                            <input type="radio" name='kind' /><div class='rq'>業餘班（依照個人目標訂立學習計畫，學費一萬五千元</div>
+                        </div>
+                    </div>
+
+                     <!--Ｑ4 -->
+                    <div class='block'>
+                        <h2>是否有程式相關背景？</h2>
+                        <div class='tag'>*</div>
+                        <br>範例：無、高中時候學過C++、學過一點網頁前端、目前在資策會上課...
+                        <input type='text' class='question' placeholder='您的回答' />
+                    </div>
+                    <input type="submit" id='button'/>
+                </form>
+        </div>
+    </body>
+    
+
+</html>
+<!--第一種做法  
+1.沒有設置'提醒文字欄'，用appendChild的方式。例如：
+    var notice = document.createElement('div')
+        notice.innerHTML = '<div>' + '這是必填問題' + '</div>'
+        notice.classList.add('warning') 
+        d[0].appendChild(notice)
+2.刪去麻煩，因為要去找你設置提醒文字欄的parenNode，附上幾個DOM常用的select Node方式
+    1.test.parentNode.removeChild(test) -- 可以刪掉自己
+    2.childNodes[0]
+
+
+
+第二種做法
+1.把'提醒文字欄'放在html，需要提醒使用者時用修改innerText或innerHTML即可。
+2.要刪去的話容易，直接把innerText= ''即可
+
+
+整體
+1.DOM選取物件還不太熟
+2.選取方式複習：
+    1.let test = document.querySelector('.block:nth-child(1) > .warning')
+    2.reqCheck = document.querySelectorAll('[name=reqCheck]')
+    3.reqCheck[0] or document.querlSelectorAll('[name=reqCheck')[0]
+    4.var warning = document.querySelectorAll('.block .warning')
+4.radio button
+    1.確認有沒有按 -- reqCheck[0].checked
+    2.如果是有按的情況可以用if(reqCheck[0].checked)，沒有按的情況可以用if(!reqCheck[0].checked)或(reqCheck[0] === 0)。
+5.邏輯 NOT 運算子 !
+    1.var a =''，則 a 為false，！a為true
+6.邏輯 OR 運算子 ||
+-->

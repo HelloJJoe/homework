@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>超簡易表單提交＋用querrySelector</title>
+        <style >
+            h1 {
+                margin: 30px;
+            }
+            
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelector('form').addEventListener('submit', e =>{
+                    var a = document.querySelector('.name').value
+                    if ( a !== 'name'){
+                        alert('please enter name')
+                        e.preventDefault()
+
+                    }
+                    
+                })
+          
+                
+            })
+            
+           
+            
+            
+        </script>
+    </head>
+    <body>
+        <form>
+            name : <input type='text' class='name'/>
+            <input type="submit" />
+        </form>
+    </body>
+
+</html>

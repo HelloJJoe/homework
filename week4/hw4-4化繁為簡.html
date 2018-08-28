@@ -1,0 +1,49 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>hw4-4化繁為簡</title>
+        <style > 
+          
+        </style>
+        <script type='text/javascript'>
+            
+            
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('body').addEventListener('click', e => {
+                if ( e.target.value === 'hide'){
+                    get('.title').hide()
+                }
+                if (e.target.value === 'show'){
+                    get('.title').show()
+                }
+            })
+        })
+
+        function get (selector) {
+            var target = document.querySelector(selector)
+            return { 
+                hide : function (){
+                    target.style.color = 'white'                   
+                },
+                show : function (){
+                    target.style.color  = 'black'
+                }
+            }
+        }
+        
+        
+     
+        </script>
+    </head> 
+    <body>
+        <div class='title' id='ya'>hello!</div> 
+        </div>
+        <input type='button' class='btn' value='hide' />
+        <input type='button' class='btn' value='show' />
+
+    </body>
+
+</html>
+ 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>超簡易表單提交＋判斷是否填入名字</title>
+        <style >
+            h1 {
+                margin: 30px;
+            }
+            
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', function(){
+          
+                
+            })
+            
+            const test = () => {
+                var a = document.querySelector('.name').value
+                if ( a === 'name') {
+                    return true
+                }
+                else
+                {
+                    return false
+                }
+            }
+            
+            
+        </script>
+    </head>
+    <body>
+        <form onsubmit="return test()">
+            name : <input type='text' class='name'/>
+            <input type="submit" />
+        </form>
+    </body>
+
+</html>

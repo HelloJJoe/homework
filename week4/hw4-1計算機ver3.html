@@ -1,0 +1,152 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>hw4-1計算機ver3</title>
+        <style>
+            body {
+                margin: 0;
+            }
+            .container {
+                margin: 50px 0px;
+            }
+            .background {
+                max-width: 480px;
+                margin: 0 auto;
+                padding: 30px 20px;
+                border: 1px solid rgb(201, 201, 201);
+            }
+            .display_background {
+                border: 1px solid rgb(221, 216, 216);
+                margin-bottom: 10px;
+                height: 60px;
+                position : relative;
+            }
+            .display {
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                font-size: 50px;
+                margin: 2px 2px;
+                display: block;
+                line-height: 60px;
+            }
+            input {
+                display: inline-block;
+                box-sizing: unset;
+                font-size: 25px;
+                width: 100px;
+                height: 50px;
+                background: rgb(247, 244, 244);
+                margin-bottom: 5px;               
+            }
+            .operator {
+                background: rgb(223, 220, 220)
+            }
+            .equal {
+                background:  rgb(0, 153, 255);
+                color: white
+            }
+            .clean  {
+                background: rgb(223, 220, 220);
+            }
+        </style>       
+        <script type='text/javascript'>
+            let cache = ''
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelector('.function').addEventListener('click', e => {
+                    var display = document.querySelector('.display')
+
+                    //按了number和operator
+                    if ( e.target.className === 'number'|| e.target.className === 'operator') {
+                        cache += e.target.value
+                        display.innerText = cache  
+                    }
+                    //按了dot
+                    if ( e.target.className === 'dot') {
+                        
+                        //檢查是否重複按了dot
+                        if ( cache.split('').includes('.')){
+                            return
+                        }
+                        else{
+                            cache += e.target.value
+                            display.innerText = cache 
+                        }
+                    }
+                    //按了clean
+                    if ( e.target.className === 'clean') {
+                        display.innerText = ''
+                        cache = ''
+                    }
+                    //按了equal
+                    if ( e.target.className === 'equal') { 
+                       display.innerText = eval(display.innerText)
+                       cache = ''
+                    }
+                    
+                })                        
+            })
+        </script>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='background'>
+                <div class='display_background'>
+                    <div class='display'></div>
+                </div>
+                <div class='function'>
+                    <!-- first row -->                 
+                    <input type="button" class='number' value='7' />
+                    <input type="button" class='number' value='8' />
+                    <input type="button" class='number' value='9' />
+                    <input type="button" class='operator' value='/' />
+                    <!-- Second row -->
+                    <input type="button" class='number' value='4' />
+                    <input type="button" class='number' value='5' />
+                    <input type="button" class='number' value='6' />
+                    <input type="button" class='operator' value='*' />
+                    <!-- Third row -->
+                    <input type="button" class='number' value='1' />
+                    <input type="button" class='number' value='2' />
+                    <input type="button" class='number' value='3' />
+                    <input type="button" class='operator' value='-' />
+                    <!-- Fourth row -->
+                    <input type="button" class='number' value='0' />
+                    <input type="button" class='dot' value='.' />
+                    <input type="button" class='equal' value='=' />
+                    <input type="button" class='operator' value='+' />
+                    <!-- Fifth row -->
+                    <input type="button" class='clean' value='AC' />
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+<!-- 
+08/21
+1.輸入數字進去display裡面，考慮到連續數字，型態應該是string、array
+1-1. 如何用單一函式選到同個class裡面的不同項？ (用e.target.value)，但是e.target.value選到空白處會失敗，待解決
+2. 按“＋”讓電腦記住你等下要加？
+
+//e.target.value型態為字串
+//為何不能a.push(parseInt(e.target.value, 10)).join("")卻可以a.push(parseInt(e.target.value, 10)) var b = a.join('')？
+        
+08/22 ver1
+1.float功能還不能用  
+2.function太複雜
+
+08/23 ver2
+1.增加float功能 done by parseFloat
+2.函式簡化，用e.target.className去找數字或是operator，在用e.target.value或是e.target.innerText讀取值
+3.css簡化
+4.加註解
+
+08/23 ver3
+1.函式更簡化，用eval函數
+-->
+
+
+

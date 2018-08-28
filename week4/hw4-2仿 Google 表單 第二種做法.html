@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>hw4-2仿 Google 表單 第二種做法</title>
+        <style>
+            body {
+                margin: 0px 0px;
+            }
+            .container {
+                max-width: 600px;
+                margin: 100px auto;
+                border: 1px solid rgb(247, 224, 224);
+                padding: 30px 10px;
+            }
+            .top {
+                padding: 0px 20px;
+            }
+            .head {
+                font-size: 37px;
+                margin-bottom: 10px;
+            }
+            .middle {
+                font-size: 5px;
+            }
+         
+            .tag {
+                color: red;
+                display: inline-block;
+                padding: 5px 5px;
+                font-size: 20px;
+            }
+            .block {
+                padding: 10px 20px;
+                margin: 5px 0;
+                font-size: 5px;
+                
+            }
+            .block2 {
+                padding: 10px 20px;
+                margin: 5px 0;
+                font-size: 17px; 
+            }
+            h2 {
+                font-size: 20px;
+                margin-bottom: 0px;
+                display: inline-block;
+                margin-top: 10px;
+            }
+            .reqQue {
+                background: none;
+                border-style: none;
+                border-bottom-style: solid;
+                border-color: rgb(212, 209, 209);
+                width: 200px;
+                font-size: 15px;
+                display: block;
+                margin-top: 25px;
+            }
+            .otherQue {
+                background: none;
+                border-style: none;
+                border-bottom-style: solid;
+                border-color: rgb(212, 209, 209);
+                width: 200px;
+                font-size: 15px;
+                display: block;
+                margin-top: 25px;
+            }
+            #button {
+                background: rgb(0, 132, 255);
+                box-sizing: unset;
+                width: 70px;
+                height: 30px;
+                border-radius: 4px;
+                font-size: 15px;
+                color: white;
+                margin: 20px 20px;
+            }
+        
+            .warning {
+                color: red;
+                margin: 15px 0px;
+                font-size: 15px;
+            }
+            .warning2 {
+                color: red;
+                margin: 15px 0px;
+                font-size: 15px;
+            }
+            .foot {
+                margin: 0 20px;
+                font-size: 10px;
+                color: grey;
+            }
+        
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelector('form').addEventListener('submit', e => {
+                        var reqQue = document.querySelectorAll('.reqQue')
+                        var reqCheck = document.querySelectorAll('[name=reqCheck]')
+                        var block = document.querySelectorAll('.block')
+                        var block2 = document.querySelector('.block2')
+                        var warning = document.querySelectorAll('.block .warning')
+                        var warning2 = document.querySelector('.warning2')
+                        var reqCheckA = ''
+
+                        if ( reqCheck[0].checked){
+                            reqCheckA = reqCheck[0].value
+                        }                           
+                        else if (reqCheck[1].checked){
+                            reqCheckA = reqCheck[1].value
+                        }
+                      
+                        //檢查必答題是否回答
+                        if ( !reqQue[0].value || !reqQue[1].value || !reqQue[2].value || !reqCheckA ){
+                            alert("You haven't don yet!")
+                            e.preventDefault()
+                            for ( var i =0; i<3; i++){
+                                //檢查Qi是否回答
+                                if (!reqQue[i].value) ( warnings (warning[i], block[i]) )
+                                else( warnings_clearout( warning[i], block[i] )   )                          
+                            }
+                            if ( !reqCheckA )( warnings ( warning2, block2))
+                            else( warnings_clearout ( warning2, block2))
+                        }
+                        else{
+                            for ( var i = 0; i<3; i++)( warnings_clearout( warning[i], block[i]))
+                            warnings_clearout ( warning2, block2 )
+                            
+                            console.log(`電子郵件地址： ${reqQue[0].value}`)
+                            console.log(`暱稱： ${reqQue[1].value}`)
+                            console.log(`報名類型： ${reqCheckA}`)
+                            console.log(`是否有程式相關背景？ ${reqQue[2].value}`)  
+                            console.log(`其他 ${document.querySelector('.otherQue').value}`) 
+
+                            alert('Submit！')
+                            e.preventDefault()
+                        }
+
+                        function warnings_clearout (a, b){
+                            a.innerText = ''
+                            b.style.background = 'none'
+                        }
+
+                        function warnings (a, b){
+                            a.innerText = '這是必填問題'
+                            b.style.background = 'rgb(247, 224, 224)'
+                        } 
+                        
+                    })              
+            })
+        </script>
+    </head>
+    <body>
+        <div class='container'>
+
+                <div class='top'>
+                    <div class='head'>從零到一：程式導師實驗計畫報名表單</div>
+                    <div class='middle'>
+                        詳情請參考：<a href='https://google.com'>https://medium.com/@hulitw/mentor-program-b5f96ae1eed1</a>
+                        <br>記得填完表單之後還要寫信報名才算成功，兩者缺一不可！</div>
+                    <div class='bottom'>
+                        <div class='tag'>*</div>必填 </div>
+                </div>
+
+                <form>
+                    <!--Ｑ1 -->
+                    <div class='block'>
+                        <h2>電子郵件地址</h2>
+                        <div class='tag'>*</div>
+                        <input type='text' class='reqQue' placeholder='您的電子郵件'/>
+                        <div class='warning'></div>
+                    </div>
+
+                    <!--Ｑ2 -->
+                    <div class='block'>
+                        <h2>暱稱</h2>
+                        <div class='tag'>*</div>
+                        <br>該怎麼稱呼你
+                        <input type='text' class='reqQue' placeholder='您的回答' />
+                        <div class='warning'></div>
+                    </div>
+
+                    <!--Ｑ3 -->
+                    <div class='block2'>
+                        <h2>報名類型</h2>
+                        <div class='tag'>*</div>
+                        <div class='radio_question'>
+                            <input type="radio" name='reqCheck' value='程師培養班（每週付出四十小時，從零培養到工程師，學費是一個月薪水' />程師培養班（每週付出四十小時，從零培養到工程師，學費是一個月薪水<br>
+                            <input type="radio" name='reqCheck' value='業餘班（依照個人目標訂立學習計畫，學費一萬五千元' />業餘班（依照個人目標訂立學習計畫，學費一萬五千元
+                            <div class='warning2'></div>
+                        </div>
+                    </div>
+
+                    <!--Ｑ4 -->
+                    <div class='block'>
+                        <h2>是否有程式相關背景？</h2>
+                        <div class='tag'>*</div>
+                        <br>範例：無、高中時候學過C++、學過一點網頁前端、目前在資策會上課...
+                        <input type='text' class='reqQue' placeholder='您的回答' />
+                        <div class='warning'></div>
+                    </div>
+
+                    <!--Ｑ5 -->
+                    <div class='block'>
+                        <h2>其他</h2>
+                        <br>其他任何你想講的
+                        <input type='text' class='otherQue' placeholder='您的回答' />
+                    </div>
+                    <input type="submit" id='button'/>
+                    <div class='foot'>請勿利用 Google 表單送出密碼。</div>
+                </form>
+        </div>
+    </body>
+    
+
+</html>
+<!--第一種做法  
+1.沒有設置'提醒文字欄'，用appendChild的方式。例如：
+    var notice = document.createElement('div')
+        notice.innerHTML = '<div>' + '這是必填問題' + '</div>'
+        notice.classList.add('warning') 
+        d[0].appendChild(notice)
+2.刪去麻煩，因為要去找你設置提醒文字欄的parenNode，附上幾個DOM常用的select Node方式
+    1.test.parentNode.removeChild(test) -- 可以刪掉自己
+    2.childNodes[0]
+
+
+
+第二種做法
+1.把'提醒文字欄'放在html，需要提醒使用者時用修改innerText或innerHTML即可。
+2.要刪去的話容易，直接把innerText= ''即可
+
+
+整體
+1.DOM選取物件還不太熟
+2.選取方式複習：
+    1.let test = document.querySelector('.block:nth-child(1) > .warning')
+    2.reqCheck = document.querySelectorAll('[name=reqCheck]')
+    3.reqCheck[0] or document.querlSelectorAll('[name=reqCheck')[0]
+    4.var warning = document.querySelectorAll('.block .warning')
+4.radio button
+    1.確認有沒有按 -- reqCheck[0].checked
+    2.如果是有按的情況可以用if(reqCheck[0].checked)，沒有按的情況可以用if(!reqCheck[0].checked)或(reqCheck[0] === 0)。
+5.邏輯 NOT 運算子 !
+    1.var a =''，則 a 為false，！a為true
+6.邏輯 OR 運算子 ||
+-->
+
+
+
+
+                           
+

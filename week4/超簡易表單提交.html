@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>超簡易表單</title>
+        <style >
+            h1 {
+                margin: 30px;
+            }
+            
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', function(){
+          
+                
+            })
+            
+            const test = () => {
+                alert('submit!')
+                //return false
+                //（如果不要submit的話，可以加return false，但切記下面要改成< form onsubmit＝‘return test()'>，代表說
+                //form執行test之後的結果，再return回form
+            }
+            
+            
+        </script>
+    </head>
+    <body>
+        <form onsubmit="test()">
+            name : <input type='text' />
+            <input type="submit" />
+        </form>
+    </body>
+
+</html>

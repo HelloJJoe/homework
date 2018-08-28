@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>hw4-1計算機</title>
+        <style>
+            body {
+                margin: 0;
+            }
+            .container {
+                margin: 50px 0px;
+            }
+            .background {
+                max-width: 480px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+         
+            .number {
+                display: inline-block;
+                box-sizing: unset;
+                font-size: 20px;
+                width: 100px;
+                height: 50px;
+                background: rgb(247, 244, 244);
+                margin-bottom: 5px;
+                
+            }
+            .method {
+                display: inline-block;
+                box-sizing: unset;
+                font-size: 20px;
+                width: 100px;
+                height: 50px;
+                background: rgb(223, 220, 220)
+            }
+            .display_background {
+                border: 1px solid rgb(221, 216, 216);
+                margin-bottom: 10px;
+                height: 50px;
+                position : relative;
+            }
+            .display {
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                font-size: 30px;
+                margin: 2px 2px;
+                display: block;
+                line-height: 50px;
+            }
+            input[name=equal] {
+                background:  rgb(0, 153, 255);
+
+
+            }
+            
+            
+        </style>
+        
+        <script type='text/javascript'>
+            var a = ''
+            var first_number = '' 
+            var second_number = ''
+            var operation = ''
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelector('input[name=seven]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 7
+                    document.querySelector('.display').innerText = a
+                })
+                document.querySelector('input[name=eight]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 8
+                    document.querySelector('.display').innerText = a
+                })
+                document.querySelector('input[name=nine]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 9
+                    document.querySelector('.display').innerText = a
+                }) 
+                document.querySelector('input[name=four]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 4
+                    document.querySelector('.display').innerText = a
+                }) 
+                document.querySelector('input[name=five]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 5
+                    document.querySelector('.display').innerText = a
+                }) 
+                document.querySelector('input[name=six]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 6
+                    document.querySelector('.display').innerText = a
+                }) 
+                document.querySelector('input[name=one]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 1
+                    document.querySelector('.display').innerText = a
+                }) 
+                document.querySelector('input[name=two]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 2
+                    document.querySelector('.display').innerText = a
+                }) 
+                document.querySelector('input[name=three]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 3
+                    document.querySelector('.display').innerText = a
+                })
+                document.querySelector('input[name=zero]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += 0
+                    document.querySelector('.display').innerText = a
+                })
+                document.querySelector('input[name=float]').addEventListener('click', () => {
+                    var display = document.querySelector('.display').innerText
+                    a += '.'
+                    document.querySelector('.display').innerText = a
+                })
+//operator
+                document.querySelector('input[name=minus]').addEventListener('click', () => {
+                    first_number = a
+                    a = ''
+                    operation = 'minus'
+                
+                })
+                document.querySelector('input[name=plus]').addEventListener('click', () => {
+                    first_number = a
+                    a = ''
+                    operation = 'plus'
+                })
+                document.querySelector('input[name=multiple]').addEventListener('click', () => {
+                    first_number = a
+                    a = ''
+                    operation = 'multiple'
+                })
+                document.querySelector('input[name=divide]').addEventListener('click', () => {
+                    first_number = a
+                    a = ''
+                    operation = 'divide'
+                })
+                document.querySelector('input[name=equal]').addEventListener('click', () => {
+//可以用switch來寫？
+                    second_number = a
+                    if (operation === 'minus') {
+                        document.querySelector('.display').innerText = parseInt(first_number, 10) - parseInt(second_number, 10)
+                    }
+                    if (operation === 'plus') {
+                        document.querySelector('.display').innerText = parseInt(first_number, 10) + parseInt(second_number, 10)
+                    }
+                    if (operation === 'multiple') {
+                        document.querySelector('.display').innerText = parseInt(first_number, 10) * parseInt(second_number, 10)
+                    }
+                    if (operation === 'divide') {
+                        document.querySelector('.display').innerText = parseInt(first_number, 10) / parseInt(second_number, 10)
+                    }
+                    a = ''
+                    first_number = ''
+                
+                })
+                document.querySelector('input[name=clean]').addEventListener('click', () => {
+                    document.querySelector('.display').innerText = 0
+                    a = ''
+                    first_number = ''
+                    second_number = ''
+                })
+                
+                
+               
+            })  
+        </script>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='background'>
+                <div class='display_background'>
+                    <div class='display'>0</div>
+                </div>
+                <div class='function'>
+                    <input type="button" class='number' value='7' name='seven'/>
+                    <input type="button" class='number' value='8' name='eight' />
+                    <input type="button" class='number' value='9' name='nine'/>
+                    <input type="button" class='method' value='/' name='divide'/>
+                    <input type="button" class='number' value='4' name='four'/>
+                    <input type="button" class='number' value='5' name='five'/>
+                    <input type="button" class='number' value='6' name='six'/>
+                    <input type="button" class='method' value='x' name='multiple'/>
+                    <input type="button" class='number' value='1' name='one'/>
+                    <input type="button" class='number' value='2' name='two'/>
+                    <input type="button" class='number' value='3' name='three'/>
+                    <input type="button" class='method' value='-' name="minus" />
+                    <input type="button" class='number' value='0' name='zero'/>
+                    <input type="button" class='number' value='.' name='float'/>
+                    <input type="button" class='method' value='=' name='equal'/>
+                    <input type="button" class='method' value='+' name="plus" />
+                    <input type="button" class='method' value='C' name="clean" />
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
+<!-- 
+08/21
+1.輸入數字進去display裡面，考慮到連續數字，型態應該是string、array
+1-1. 如何用單一函式選到同個class裡面的不同項？ (用e.target.value)，但是e.target.value選到空白處會失敗，待解決
+2. 按“＋”讓電腦記住你等下要加？
+
+//e.target.value型態為字串
+//為何不能a.push(parseInt(e.target.value, 10)).join("")卻可以a.push(parseInt(e.target.value, 10)) var b = a.join('')？
+        
+08/22 ver1
+1.float功能還不能用  
+2.function太複雜
+
+08/23 ver2
+1.增加float功能 done by parseFloat
+2.函式簡化，用e.target.className去找數字或是operator，在用e.target.value或是e.target.innerText讀取值
+3.css簡化
+4.加註解
+
+08/23 ver3
+1.函式更簡化，用eval函數
+-->

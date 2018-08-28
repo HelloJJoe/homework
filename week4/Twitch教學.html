@@ -1,0 +1,69 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Twitch教學</title>
+        <style > 
+            body {
+                margin: 0;
+                background-image: url(http://cdn.walkerland.com.tw/images/upload/poi/p25622/m38417/057b5cd3d96d81aff84444affc055a94f25d15b5.jpg)
+            }
+            .container {
+            }
+            .boxes {
+                max-width: 1000px;
+                margin: 30px auto;
+                
+            }
+            .box {
+                display: inline-block;
+            }
+            
+
+        </style>
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', function(){                    
+                    
+                    var httpRequest = new XMLHttpRequest();
+                    httpRequest.addEventListener('load', clipsLoaded);
+                    
+                    httpRequest.open('GET', 'https://api.twitch.tv/kraken/clips/top?limit=10&game=Overwatch&trending=true');
+                    httpRequest.setRequestHeader('Client-ID', 'w2kew9u3juaaa56uz7ccnjjt8jtbun');
+                    httpRequest.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+                    httpRequest.send();
+
+                    function clipsLoaded() {
+                            var clipsDisplay = document.getElementById('clips-display')
+                            var clipList = JSON.parse(httpRequest.responseText);
+                            console.log(clipList)
+
+                            /*
+                            clipList.clips.forEach(function(clip, index, array) {
+                            clipItem = document.createElement('div');
+                            clipItem.innerHTML = clip.embed_html;
+                            clipsDisplay.appendChild(clipItem);
+                            });
+                            */
+            }
+            })
+                                
+      
+        </script>
+    </head> 
+    <body>
+        <div class='container'>
+            <div class='streams'></div>
+        </div>
+    </body>
+
+</html>
+<!-- curl -H 'Accept: application/vnd.twitchtv.v5+json' \
+-H 'Client-ID: w2kew9u3juaaa56uz7ccnjjt8jtbun' \
+-X GET 'https://api.twitch.tv/kraken/streams/?game=Overwatch'
+-->
+
+<!--
+curl -H 'Client-ID: w2kew9u3juaaa56uz7ccnjjt8jtbun' \
+-X GET 'https://api.twitch.tv/helix/streams?game_id=33214'
+-->
